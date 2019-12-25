@@ -1,0 +1,41 @@
+*{
+	margin: 0px;
+	padding: 0px;
+		
+}
+a{
+	text-decoration: none;
+}
+body{
+	margin-left: 10%;
+	margin-right: 10%;
+	background-image: url(/Bear/images/main/background.jpg);
+	background-size: cover;
+	background-attachment: fixed;/*鑳屾櫙鍥哄畾*/
+	background-repeat: no-repeat;/*鏃犻噸澶�*/
+	background-position: center;/*鑳屾櫙灞呬腑*/
+}
+.menu a{
+	color: white;
+	margin-left: 20px;
+	padding: 5px 5px;
+	position: relative;
+	top: 14px;	
+}
+.menu{
+	background-color: #545560;
+	height: 50px;
+	margin: auto;
+	margin-top: 40px;
+}
+.menu a:hover{
+	color: black;
+	background-color: white;
+}
+.logo{
+	height: 130px;
+	position: relative;
+	top: 20px;
+	color: white;
+	background-image: url(/Bear/images/main/title.png);
+}

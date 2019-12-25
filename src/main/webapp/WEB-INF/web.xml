@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<!-- 拦截所有的非jsp页面都会进入到底下的DispatcherServlet中 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 修改文件默认路径 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc.xml</param-value>
+		</init-param>
+		<!-- 设置此servlet的生命周期为服务器启动到执行结束 原先为执行时到执行结束 -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<context-param>
+      <param-name>log4j</param-name>
+      <param-value>classpath:log4j.properties</param-value>
+  	</context-param>
+	<!-- 字符编码过滤器 -->
+	<filter>
+		<filter-name>encoding</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<!-- 通过设置.CharacterEncodingFilter中encoding的值为utf-8已达到字符编码的设置,底层执行的还是request.CharacterEncoding() -->
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encoding</filter-name>
+		<!-- 拦截所有 -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 上下文参数 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- 设置读取applicationCcontext.xml文件的位置为根目录下 -->
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	<!-- 监听器：用来在servlet中使用WebApplicationContext的 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+</web-app>

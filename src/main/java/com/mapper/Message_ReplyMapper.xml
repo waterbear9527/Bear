@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.Message_ReplyMapper">
+	<resultMap type="Message_Reply" id="mymap">
+		<id property="id" column="id"/>
+		<result property="context" column="context"/>
+		<result property="createtime" column="createtime"/>
+		<result property="uid" column="uid"/>
+		<result property="mid" column="mid"/>
+		<association property="users_info" select="com.mapper.Users_InfoMapper.selByUid" column="uid"></association>
+		<association property="users" select="com.mapper.UsersMapper.selById" column="uid"></association>
+	</resultMap>
+  	<select id="selByMid" parameterType="int" resultMap="mymap">
+  		select * from message_reply where mid=#{0}
+  	</select>
+</mapper>

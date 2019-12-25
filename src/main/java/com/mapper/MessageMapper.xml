@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.MessageMapper">
+	<resultMap type="Message" id="mymap">
+		<id property="id" column="id"/>
+		<result property="context" column="context"/>
+		<result property="fabulous_count" column="fabulous_count"/>
+		<result property="stepon_count" column="stepon_count"/>
+		<result property="createtime" column="createtime"/>
+		<result property="uid" column="uid"/>
+		<association property="users_info" select="com.mapper.Users_InfoMapper.selByUid" column="uid"></association>
+		<association property="users" select="com.mapper.UsersMapper.selById" column="uid"></association>
+		<collection property="message_replys" select="com.mapper.Message_ReplyMapper.selByMid" column="id"></collection>
+	</resultMap>
+  	<select id="selMessage" parameterType="int" resultMap="mymap">
+  		select * from message limit #{0},5
+  	</select>
+</mapper>
